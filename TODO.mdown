@@ -1,0 +1,94 @@
+- Mongo::Client
+    + ctor:
+        mongoc_init() (static?)
+        mongoc_client_new()
+        mongoc_write_concern_new()
+
+    + dtor:
+        mongoc_client_destroy()
+        mongoc_write_concern_destroy()
+
+    + getCollection:
+        mongoc_client_get_collection()
+
+    + getDatabase:
+        mongoc_client_get_database()
+
+    + setWriteConcern:
+        mongoc_write_concern_set_*()
+        mongoc_client_set_write_concern()
+
+    + getServerStatus:
+        [FUTURE]
+
+    + getReadPreferences:
+        [FUTURE]
+
+    + setReadPreferences:
+        [FUTURE]
+
+- Mongo::Database
+    + ctor:
+        Private but copyable
+
+    + dtor:
+        mongoc_database_destroy()
+
+    + getCollection:
+        mongoc_client_get_collection()
+
+    + drop:
+        mongoc_database_drop()
+
+    + command:
+        mongoc_database_command()
+
+    + addUser:
+        [FUTURE]
+
+    + removeUser:
+        [FUTURE]
+
+- Mongo::Collection
+    + ctor:
+        Private but copyable
+
+    + dtor:
+        mongoc_collection_destroy
+
+    + insert:
+        mongoc_collection_insert
+
+    + remove:
+        mongoc_collection_remove
+
+    + update:
+        mongoc_collection_update
+
+    + find:
+        mongoc_collection_find()
+
+    + command:
+
+    + createIndex:
+        mongoc_index_opt_get_default()
+        mongoc_collection_create_index()
+
+    + dropIndex:
+
+ - Mongo::Cursor
+    + ctor:
+        Private but copyable
+
+    + hasNext:
+
+    + hasError:
+
+    + getError:
+
+    + next:
+
+    + itCount:
+
+    + toArray:
+        [FUTURE]
