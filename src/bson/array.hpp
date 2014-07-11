@@ -8,7 +8,7 @@
 
 #include "bcontainer.hpp"
 
-namespace bson {
+namespace mongo {
 
     class Element;
     class Document;
@@ -59,11 +59,17 @@ namespace bson {
         // get a string representation of the array
         std::string toString();
 
+        // get the JSON representation of the array
+        std::string toJSON();
+
+        // return true if the array is empty
+        bool empty();
+
     private:
         std::vector<std::shared_ptr<Element> > elements_;
     };
 
     // stream operator overload for displaying arrays
-    std::ostream& operator<<(std::ostream& os, bson::Array a);
+    std::ostream& operator<<(std::ostream& os, Array a);
 
 }

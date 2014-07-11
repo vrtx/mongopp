@@ -2,7 +2,7 @@
 #include "document.hpp"
 #include "element.hpp"
 
-using namespace bson;
+using namespace mongo;
 using namespace std;
 
 TEST(Array, SimpleInline) {

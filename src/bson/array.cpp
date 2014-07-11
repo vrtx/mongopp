@@ -4,9 +4,9 @@
 #include "document.hpp"
 #include "element.hpp"
 
-namespace bson {
+namespace mongo {
 
-    std::ostream& operator<<(std::ostream& os, bson::Array a) {
+    std::ostream& operator<<(std::ostream& os, Array a) {
         os << a.toString();
         return os;
     }

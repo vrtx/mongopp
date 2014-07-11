@@ -1,7 +1,7 @@
 #include "element.hpp"
 #include <bson.h>
 
-namespace bson {
+namespace mongo {
 
     void Element::set(const bool value) {
         setBool(value);
@@ -113,7 +113,7 @@ namespace bson {
     }
 
     // stream operator overload for displaying elements
-    std::ostream& operator<<(std::ostream& os, bson::Element e) {
+    std::ostream& operator<<(std::ostream& os, Element e) {
         os << e.field() << ": [TODO: VALUE]";
         return os;
     }

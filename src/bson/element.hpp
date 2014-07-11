@@ -4,7 +4,7 @@
 #include "bcontainer.hpp"
 #include "document.hpp"
 
-namespace bson {
+namespace mongo {
 
     class Element {
 
@@ -99,6 +99,41 @@ namespace bson {
             return bson_iter_type(&iter) == BSON_TYPE_MAXKEY;
         }
 
+        bool isString() const {
+            bson_iter_t iter;
+            bson_iter_init(&iter, &parent_->getRawBSON());
+            bson_iter_find(&iter, field_.c_str());
+            return bson_iter_type(&iter) == BSON_TYPE_UTF8;
+        }
+
+        bool isInt64() const {
+            bson_iter_t iter;
+            bson_iter_init(&iter, &parent_->getRawBSON());
+            bson_iter_find(&iter, field_.c_str());
+            return bson_iter_type(&iter) == BSON_TYPE_INT64;
+        }
+
+        bool isInt32() const {
+            bson_iter_t iter;
+            bson_iter_init(&iter, &parent_->getRawBSON());
+            bson_iter_find(&iter, field_.c_str());
+            return bson_iter_type(&iter) == BSON_TYPE_INT32;
+        }
+
+        bool isDouble() const {
+            bson_iter_t iter;
+            bson_iter_init(&iter, &parent_->getRawBSON());
+            bson_iter_find(&iter, field_.c_str());
+            return bson_iter_type(&iter) == BSON_TYPE_DOUBLE;
+        }
+
+        bool isInt() const {
+            return isInt64() || isInt32();
+        }
+
+        bool isNumber() const {
+            return isInt() || isDouble();
+        }
 
         // Castable getters
         Document& document() {
@@ -134,7 +169,6 @@ namespace bson {
         Element& operator[](int pos) {
             return array().operator[](pos);
         }
-
 
         std::string str() const {
             uint32_t len;
@@ -281,6 +315,6 @@ namespace bson {
     };
 
     // stream operator overload for displaying elements
-    std::ostream& operator<<(std::ostream& os, bson::Element e);
+    std::ostream& operator<<(std::ostream& os, Element e);
 
 }

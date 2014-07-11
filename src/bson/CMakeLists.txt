@@ -8,7 +8,6 @@ set(BSON_SRCS
 set(BSON_HDRS
               array.hpp
               bcontainer.hpp
-              cursor.hpp
               document.hpp
               element.hpp)
 

@@ -5,7 +5,7 @@
 #include "element.hpp"
 
 using namespace std;
-using namespace bson;
+using namespace mongo;
 
 TEST(Document, SimpleInline) {
   Document d("a", 1,

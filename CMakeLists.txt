@@ -1,5 +1,5 @@
 # Project setup
-project(mongo-sim)
+project(mongopp)
 cmake_minimum_required(VERSION 2.8.0)
 
 add_definitions(-Wall)
@@ -18,13 +18,10 @@ pkg_check_modules(LIBBSON      libbson-1.0)
 include_directories(${LIBMONGOC_INCLUDE_DIRS})
 include_directories(${LIBBSON_INCLUDE_DIRS})
 
-include_directories(src/codegen)
-include_directories(src/simulation)
-include_directories(src/simulation/bson)
+include_directories(src)
+include_directories(src/bson)
 include_directories(src/unittest)
 
-add_subdirectory(src/codegen)
-add_subdirectory(src/simulation)
+add_subdirectory(src)
 add_subdirectory(src/unittest)
-add_subdirectory(workloads)
 

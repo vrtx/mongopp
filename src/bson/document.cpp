@@ -6,7 +6,7 @@
 
 using namespace std;
 
-namespace bson {
+namespace mongo {
 
     Document::Document() : BContainer()  { }
 
@@ -16,7 +16,7 @@ namespace bson {
 
     Document::~Document() { }
 
-    std::ostream& operator<< (std::ostream& os, bson::Document d) {
+    std::ostream& operator<< (std::ostream& os, Document d) {
         os << d.toString();
         return os;
     }

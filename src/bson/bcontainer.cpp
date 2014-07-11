@@ -2,7 +2,7 @@
 
 #include "bcontainer.hpp"
 
-namespace bson {
+namespace mongo {
 
     BContainer::BContainer() {
         bson_init(&bson_);

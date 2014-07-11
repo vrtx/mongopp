@@ -2,7 +2,7 @@
 
 #include <bson.h>
 
-namespace bson {
+namespace mongo {
     class BContainer {
     public:
 

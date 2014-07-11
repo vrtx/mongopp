@@ -8,7 +8,7 @@
 
 #include "bcontainer.hpp"
 
-namespace bson {
+namespace mongo {
 
     class Element;
 
@@ -64,11 +64,18 @@ namespace bson {
         // user["favs"] = favs;
         Element& operator[](const char* field);
 
+        // get a string representation of the document
         std::string toString();
+
+        // get the JSON representation of the document
+        std::string toJSON();
+
+        // return true if the document is empty
+        bool empty();
 
         std::map<const char*, std::shared_ptr<Element> > elements_;
     };
 
-    std::ostream& operator<< (std::ostream& os, bson::Document d);
+    std::ostream& operator<< (std::ostream& os, Document d);
 
 }
