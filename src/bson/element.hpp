@@ -238,6 +238,36 @@ namespace mongo {
             return int32() <= v;
         }
 
+        // uint32_t overloads
+        uint32_t uint32() const {
+            bson_iter_t iter;
+            bson_iter_init(&iter, &parent_->getRawBSON());
+            bson_iter_find(&iter, field_.c_str());
+            if (!BSON_ITER_HOLDS_INT32(&iter))
+                throw;
+            return bson_iter_int32(&iter);
+        }
+        explicit operator uint32_t() const {
+            return uint32();
+        }
+        bool operator ==(uint32_t v) const {
+            return uint32() == v;
+        }
+        bool operator !=(uint32_t v) const {
+            return uint32() != v;
+        }
+        bool operator >(uint32_t v) const {
+            return uint32() > v;
+        }
+        bool operator <(uint32_t v) const {
+            return uint32() < v;
+        }
+        bool operator >=(uint32_t v) const {
+            return uint32() >= v;
+        }
+        bool operator <=(uint32_t v) const {
+            return uint32() <= v;
+        }
 
         int64_t int64() const {
             bson_iter_t iter;
@@ -265,6 +295,34 @@ namespace mongo {
         }
         bool operator <=(int64_t v) const {
             return int64() <= v;
+        }
+
+        uint64_t uint64() const {
+            bson_iter_t iter;
+            bson_iter_init(&iter, &parent_->getRawBSON());
+            bson_iter_find(&iter, field_.c_str());
+            return bson_iter_int64(&iter);
+        }
+        explicit operator uint64_t() const {
+            return uint64();
+        }
+        bool operator ==(uint64_t v) const {
+            return uint64() == v;
+        }
+        bool operator !=(uint64_t v) const {
+            return uint64() != v;
+        }
+        bool operator >(uint64_t v) const {
+            return uint64() > v;
+        }
+        bool operator <(uint64_t v) const {
+            return uint64() < v;
+        }
+        bool operator >=(uint64_t v) const {
+            return uint64() >= v;
+        }
+        bool operator <=(uint64_t v) const {
+            return uint64() <= v;
         }
 
         double number() const {

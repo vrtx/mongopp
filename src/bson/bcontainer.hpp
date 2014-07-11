@@ -22,7 +22,7 @@ namespace mongo {
         const bson_t& getRawBSON() const;
         bson_t& getRawBSON();
 
-    private:
+    // private:
         // libbson document
         bson_t bson_;
     };

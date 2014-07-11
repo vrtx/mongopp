@@ -2,6 +2,7 @@
 
 #include <mongoc.h>
 #include "document.hpp"
+#include "element.hpp"
 #include "log.hpp"
 #include "mongo_exception.hpp"
 
@@ -13,7 +14,7 @@ namespace mongo {
 
     Cursor::Cursor(mongoc_cursor_t *cursor)
             : cursor_(cursor) {
-                
+
     }
 
     Cursor::Cursor(const Cursor &rhs) {
@@ -22,17 +23,24 @@ namespace mongo {
         last_result_ = rhs.last_result_;
     }
 
+    Cursor::~Cursor() {
+        mongoc_cursor_destroy(cursor_);
+    }
+
     Document& Cursor::next() {
-        const bson_t *doc;
-        if (!mongoc_cursor_next(cursor_, &doc))
-            throw MongoException("Cursor::next() was called with no more results");
-        last_result_ = Document(*doc);
+        // throw MongoException("Cursor::next() was called with no more results");
         return last_result_;
     }
 
     bool Cursor::hasNext() {
-        return !mongoc_cursor_error(cursor_, &last_error_) &&
-                mongoc_cursor_more(cursor_);
+        const bson_t *doc;
+        if (mongoc_cursor_error(cursor_, &last_error_) ||
+            !mongoc_cursor_more(cursor_))
+            return false;
+        if (!mongoc_cursor_next(cursor_, &doc))
+            return false;
+        last_result_ = Document(*doc);
+        return true;
     }
 
     bool Cursor::hasError() {

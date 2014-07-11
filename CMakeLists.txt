@@ -25,3 +25,6 @@ include_directories(src/unittest)
 add_subdirectory(src)
 add_subdirectory(src/unittest)
 
+add_executable(example example.cpp)
+target_link_libraries(example bson mongopp)
+

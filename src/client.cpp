@@ -81,13 +81,11 @@ namespace mongo {
     // }
 
     Collection Client::getCollection(const string &db, const string &col) const {
-        mongoc_client_get_collection(client_, db.c_str(), col.c_str());
-        return Collection();
+        return Collection(mongoc_client_get_collection(client_, db.c_str(), col.c_str()));
     }
 
     Database Client::getDatabase(const string &db) const {
-        mongoc_client_get_database(client_, db.c_str());
-        return Database();
+        return Database(mongoc_client_get_database(client_, db.c_str()));
     }
 
 }

@@ -114,7 +114,7 @@ namespace mongo {
 
     // stream operator overload for displaying elements
     std::ostream& operator<<(std::ostream& os, Element e) {
-        os << e.field() << ": [TODO: VALUE]";
+        os << e.field() << ": []";
         return os;
     }
 

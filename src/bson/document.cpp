@@ -10,9 +10,13 @@ namespace mongo {
 
     Document::Document() : BContainer()  { }
 
-    Document::Document(const bson_t bson) : BContainer(bson) { }
+    Document::Document(const bson_t bson) : BContainer(bson) {
 
-    Document::Document(const Document& rhs) : BContainer(rhs) { }
+    }
+
+    Document::Document(const Document& rhs) : BContainer(rhs) {
+        elements_ = rhs.elements_;
+    }
 
     Document::~Document() { }
 
@@ -22,17 +26,19 @@ namespace mongo {
     }
 
     std::string Document::toString() {
-        static int indent = 0;
+        // static int indent = 0;
         std::stringstream s;
-        s << "{ " << endl;
-        indent++;
-        string prefix(indent * 2, ' ');
-        for (auto e : elements_)
-            s << prefix << e.first << ": " << e.second << std::endl;
-        indent--;
-        string suffix(indent * 2, ' ');
-        s << suffix << "} ";
-        return s.str();
+        // s << "{ " << endl;
+        // indent++;
+        // string prefix(indent * 2, ' ');
+        // for (auto e : elements_)
+        //     s << prefix << e.first << ": " << e.second << std::endl;
+        // indent--;
+        // string suffix(indent * 2, ' ');
+        // s << suffix << "} ";
+        size_t len;
+        char* json = bson_as_json(&bson_, &len);
+        return std::string(json, len);
     }
 
     Element& Document::operator[](const char* field) {

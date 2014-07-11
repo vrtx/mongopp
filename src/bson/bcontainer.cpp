@@ -9,7 +9,8 @@ namespace mongo {
     }
 
     BContainer::BContainer(const bson_t& bson) {
-        bson_copy_to(&bson, &bson_);
+        bson_ = bson;
+        // bson_copy_to(&bson, &bson_);
     }
 
     BContainer::BContainer(const BContainer& rhs) {

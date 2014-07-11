@@ -9,6 +9,7 @@ namespace mongo {
 
     class Database {
     public:
+        Database();
         Database(const Database &rhs);
         ~Database();
         Collection getCollection(const std::string &col) const;
@@ -18,8 +19,9 @@ namespace mongo {
         bool       removeUser(const std::string &user) const;
     private:
         friend class Client;
-        Database();
+        explicit Database(mongoc_database_t *dbName);
         mongoc_database_t *database_;
+        bson_error_t      *lastError_;
     };
 
 }
